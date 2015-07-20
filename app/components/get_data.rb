@@ -45,26 +45,26 @@ class Sensor
   end
 
   def self.start
-pp 'started'
-    # clock = PiPiper::Pin.new :pin => 18, :direction => :out
-    # adc_out = PiPiper::Pin.new :pin => 23
-    # adc_in = PiPiper::Pin.new :pin => 24, :direction => :out
-    # cs = PiPiper::Pin.new :pin => 25, :direction => :out
-    #
-    # adc_pin = 0
-    #
-    # timely_loop 10 do
-    #   value = read_adc(adc_pin, clock, adc_in, adc_out, cs)
-    #   invert = 1023 - value
-    #   mvolts = invert * (3300.0 / 1023.0)
-    #   if mvolts < 2700
-    #     temp = (mvolts - 380.0) / (2320.0 / 84.0)
-    #   else
-    #     temp = (mvolts - 2700.0) / (390.0 / 92.0) + 84.0
-    #   end
-    #   temp_f = (temp * 9.0 / 5.0) + 32
-    #   puts "Value = #{value}, invert = #{invert}, mvolts = #{mvolts}, temp = #{temp} C | #{temp_f} F"
-    #   Temp.create(:value => value)
-    # end
+p 'started'
+    clock = PiPiper::Pin.new :pin => 18, :direction => :out
+    adc_out = PiPiper::Pin.new :pin => 23
+    adc_in = PiPiper::Pin.new :pin => 24, :direction => :out
+    cs = PiPiper::Pin.new :pin => 25, :direction => :out
+
+    adc_pin = 0
+
+    timely_loop 10 do
+      value = read_adc(adc_pin, clock, adc_in, adc_out, cs)
+      invert = 1023 - value
+      mvolts = invert * (3300.0 / 1023.0)
+      if mvolts < 2700
+        temp = (mvolts - 380.0) / (2320.0 / 84.0)
+      else
+        temp = (mvolts - 2700.0) / (390.0 / 92.0) + 84.0
+      end
+      temp_f = (temp * 9.0 / 5.0) + 32
+      puts "Value = #{value}, invert = #{invert}, mvolts = #{mvolts}, temp = #{temp} C | #{temp_f} F"
+      Temp.create(:value => value)
+    end
   end
 end
