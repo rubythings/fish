@@ -21,9 +21,7 @@ development:
 test:
   <<: *default
   database: test_fish
-  password: naughty
 
 production:
   <<: *default
   database: fish
-  password: naughty
