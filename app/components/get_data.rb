@@ -1,4 +1,4 @@
-require 'pi_piper'
+# require 'pi_piper'
 #port of the Adafruit MCP3008 interface code found @ http://learn.adafruit.com/send-raspberry-pi-data-to-cosm/python-script
 class Sensor
   def read_adc(adc_pin, clockpin, adc_in, adc_out, cspin)
