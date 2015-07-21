@@ -7,7 +7,7 @@
 default: &default
   adapter: mysql2
   password: raspberry
-  user: pi
+  username: pi
 
 
 development:
