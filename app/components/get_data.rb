@@ -68,3 +68,5 @@ p 'started'
     end
   end
 end
+
+ Sensor.start
