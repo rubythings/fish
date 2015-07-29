@@ -1,6 +1,6 @@
 require 'rufus/scheduler'
 require 'redis'
-scheduler = Rufus::Scheduler.start_new
+scheduler = Rufus::Scheduler.new
 redis = Redis.new
 
 scheduler.every("10s") do
