@@ -1,7 +1,7 @@
  require 'pi_piper'
 #port of the Adafruit MCP3008 interface code found @ http://learn.adafruit.com/send-raspberry-pi-data-to-cosm/python-script
 class Sensor
-  def read_adc(adc_pin, clockpin, adc_in, adc_out, cspin)
+  def self.read_adc(adc_pin, clockpin, adc_in, adc_out, cspin)
     cspin.on
     clockpin.off
     cspin.off
@@ -54,7 +54,7 @@ p 'started'
     adc_pin = 0
 
     timely_loop 10 do
-      value = read_adc(adc_pin, clock, adc_in, adc_out, cs)
+      value = self.read_adc(adc_pin, clock, adc_in, adc_out, cs)
       invert = 1023 - value
       mvolts = invert * (3300.0 / 1023.0)
       if mvolts < 2700
