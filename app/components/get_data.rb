@@ -1,4 +1,5 @@
  require 'pi_piper'
+ require 'redis'
 #port of the Adafruit MCP3008 interface code found @ http://learn.adafruit.com/send-raspberry-pi-data-to-cosm/python-script
 class Sensor
   def self.read_adc(adc_pin, clockpin, adc_in, adc_out, cspin)
@@ -46,6 +47,8 @@ class Sensor
 
   def self.start
 p 'started'
+redis = Redis.new
+
     clock = PiPiper::Pin.new :pin => 18, :direction => :out
     adc_out = PiPiper::Pin.new :pin => 23
     adc_in = PiPiper::Pin.new :pin => 24, :direction => :out
@@ -63,8 +66,9 @@ p 'started'
         temp = (mvolts - 2700.0) / (390.0 / 92.0) + 84.0
       end
       temp_f = (temp * 9.0 / 5.0) + 32
+      redis.lpush('temps', temp)
       puts "Value = #{value}, invert = #{invert}, mvolts = #{mvolts}, temp = #{temp} C | #{temp_f} F"
-      Temp.create(:value => value)
+      # Temp.create(:value => value)
     end
   end
 end
