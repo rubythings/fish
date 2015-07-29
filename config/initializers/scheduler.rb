@@ -5,6 +5,6 @@ redis = Redis.new
 
 scheduler.every("10s") do
 
- temps =  redis.get('temps')
+ temps =  redis.lrange('temps', 0, -1)
   p temps
 end
